@@ -2,6 +2,8 @@ package com.max.financeflow
 
 import android.view.View
 import android.os.Bundle
+import java.text.NumberFormat
+import java.util.Locale
 import com.max.financeflow.adapter.MovimentacaoAdapter
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -69,8 +71,8 @@ class ExtratoActivity : AppCompatActivity() {
 
         binding.lvMovimentacoes.adapter = adapter
 
-        binding.tvSaldo.text =
-            "Saldo Atual: R$ $saldo"
+        val formatador = NumberFormat.getCurrencyInstance(Locale.forLanguageTag("pt-BR"))
+        binding.tvSaldo.text = "Saldo Atual: ${formatador.format(saldo)}"
 
     }
 }

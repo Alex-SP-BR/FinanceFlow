@@ -1,8 +1,12 @@
 package com.max.financeflow
 
 import android.content.Intent
+import android.text.Editable
+import android.text.TextWatcher
 import android.widget.Toast
 import android.app.DatePickerDialog
+import java.text.NumberFormat
+import java.util.Locale
 import java.util.Calendar
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
@@ -60,6 +64,36 @@ class MainActivity : AppCompatActivity() {
 
         }
 
+        binding.etValor.addTextChangedListener(object : TextWatcher {
+            private var current = ""
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                if (s.toString() != current) {
+                    binding.etValor.removeTextChangedListener(this)
+
+                    val cleanString = s.toString().replace(Regex("[R$,.\\s]"), "")
+
+                    if (cleanString.isNotEmpty()) {
+                        val parsed = cleanString.toDouble()
+                        val formatted = NumberFormat.getCurrencyInstance(Locale.forLanguageTag("pt-BR")).format(parsed / 100)
+
+                        current = formatted
+                        binding.etValor.setText(formatted)
+                        binding.etValor.setSelection(formatted.length)
+                    } else {
+                        current = ""
+                        binding.etValor.setText("")
+                    }
+
+                    binding.etValor.addTextChangedListener(this)
+                }
+            }
+
+            override fun afterTextChanged(s: Editable?) {}
+        })
+
         binding.btExtrato.setOnClickListener {
 
             val tela = Intent(
@@ -114,9 +148,13 @@ class MainActivity : AppCompatActivity() {
             else
                 "Despesa"
 
+        val valorTexto = binding.etValor.text.toString()
+            .replace(Regex("[R$,.\\s]"), "")
+        val valorNumerico = if (valorTexto.isNotEmpty()) valorTexto.toDouble() / 100 else 0.0
+
         val movimentacao = Movimentacao(
             0,
-            binding.etValor.text.toString().toDouble(),
+            valorNumerico,
             binding.etDescricao.text.toString(),
             binding.etData.text.toString(),
             tipoSelecionado

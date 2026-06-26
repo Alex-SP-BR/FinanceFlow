@@ -7,6 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.TextView
+import java.text.NumberFormat
+import java.util.Locale
 import com.max.financeflow.R
 import com.max.financeflow.entity.Movimentacao
 
@@ -52,11 +54,13 @@ class MovimentacaoAdapter(
 
         val movimentacao = lista[position]
 
+        val formatador = NumberFormat.getCurrencyInstance(Locale.forLanguageTag("pt-BR"))
+
         descricao.text = movimentacao.descricao
 
         data.text = movimentacao.data
 
-        valor.text = "R$ ${movimentacao.valor}"
+        valor.text = formatador.format(movimentacao.valor)
 
         if (movimentacao.tipo == "Receita") {
 
