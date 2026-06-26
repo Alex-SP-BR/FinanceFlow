@@ -5,42 +5,59 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#F5F5F5"
     tools:context=".ExtratoActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:padding="16dp">
 
         <TextView
             android:id="@+id/tvSaldo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:background="@android:drawable/dialog_holo_light_frame"
+            android:elevation="4dp"
+            android:gravity="center"
+            android:padding="24dp"
             android:text="Saldo: R$ 0.00"
-            android:textSize="20sp" />
-
-        <Button
-            android:id="@+id/btVoltar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:text="Voltar" />
+            android:textColor="#1B5E20"
+            android:textSize="24sp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/tvMensagem"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:padding="8dp"
+            android:padding="16dp"
             android:text="Nenhuma movimentação cadastrada."
+            android:textColor="#757575"
+            android:textSize="16sp"
             android:textStyle="italic"
             android:visibility="gone" />
 
         <ListView
             android:id="@+id/lvMovimentacoes"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:divider="@android:color/transparent"
+            android:dividerHeight="8dp" />
+
+        <Button
+            android:id="@+id/btVoltar"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:layout_marginTop="16dp"
+            android:text="Voltar para Início"
+            android:textAllCaps="true"
+            android:textColor="#D32F2F"
+            android:textSize="16sp" />
 
     </LinearLayout>
 
