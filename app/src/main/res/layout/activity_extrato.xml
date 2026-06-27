@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F5F5F5"
+    android:background="?android:attr/windowBackground"
     tools:context=".ExtratoActivity">
 
     <LinearLayout
@@ -19,12 +19,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
-            android:background="@android:drawable/dialog_holo_light_frame"
+            android:background="?android:attr/colorBackgroundFloating"
             android:elevation="4dp"
             android:gravity="center"
             android:padding="24dp"
             android:text="Saldo: R$ 0.00"
-            android:textColor="#1B5E20"
+            android:textColor="#4CAF50"
             android:textSize="24sp"
             android:textStyle="bold" />
 
@@ -35,7 +35,7 @@
             android:gravity="center"
             android:padding="16dp"
             android:text="Nenhuma movimentação cadastrada."
-            android:textColor="#757575"
+            android:textColor="?android:attr/textColorSecondary"
             android:textSize="16sp"
             android:textStyle="italic"
             android:visibility="gone" />
@@ -56,7 +56,7 @@
             android:layout_marginTop="16dp"
             android:text="Voltar para Início"
             android:textAllCaps="true"
-            android:textColor="#D32F2F"
+            android:textColor="#F44336"
             android:textSize="16sp" />
 
     </LinearLayout>
